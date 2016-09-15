@@ -10,11 +10,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/tone', function(req, res, next) {
-  watson.toneAnalyzer.tone(req.body.text, function(err, tone) {
-    if (err)
+  watson.toneAnalyzer.tone(req.body, function(err, tone) {
+    if (err) {
       res.json(err);
-    else
+    } else {
       res.json(tone);
+    }
   });
 });
 

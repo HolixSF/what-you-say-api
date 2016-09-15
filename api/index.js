@@ -6,27 +6,27 @@ var client = require('twilio')(twilioConfig.sid, twilioConfig.token);
 
 
 router.get('/', function(req, res, next) {
-	res.json({text: 'Welcome to my API'});
+  res.json({text: 'Welcome to my API'});
 });
 
 router.post('/tone', function(req, res, next) {
-	watson.toneAnalyzer.tone(req.body.text, function(err, tone) {
+  watson.toneAnalyzer.tone(req.body.text, function(err, tone) {
     if (err)
       res.json(err);
     else
-    	res.json(tone);
-	});
+      res.json(tone);
+  });
 });
 
 router.post('/message', function(req, res, next) {
-	client.messages.create({ 
+  client.messages.create({ 
     to: req.body.number, 
     from: twilioConfig.num, 
     body: req.body.text, 
-	}, function(err, message) { 
+  }, function(err, message) { 
     console.log(err, message.sid);
-	});
-	next();
+  });
+  next();
 })
 
 module.exports = router;

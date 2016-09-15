@@ -5,7 +5,7 @@ var config = require('./api/config/api');
 require('./api/middleware')(app);
 
 app.get('/', function(req, res) {
-	res.redirect('/api');
+  res.redirect('/api');
 });
 
 app.use('/api', api);
@@ -25,8 +25,8 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.status(500).json({
-        message: err.message,
-        error: err
+      message: err.message,
+      error: err
     });
   });
 }
@@ -36,9 +36,9 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.status(500).json({
-        message: err.message,
-        error: err
-    });
+    message: err.message,
+    error: err
+  });
 });
 
 app.listen(config.port, function() {
